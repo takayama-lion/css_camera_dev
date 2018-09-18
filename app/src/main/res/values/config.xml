@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_code">camera001</string>
+<!--    <integer name="port_no">55432</integer>-->
+    <integer name="port_no">80</integer>
+
+    <!--
+    <string name="server_path">http://192.168.33.5/cakephp/device</string>
+    -->
+    <string name="server_path">http://sdtaka.sakura.ne.jp/cakephp/device</string>
+    <string name="regist_path">regist</string>
+    <string name="upload_path">upload</string>
+
+</resources>
