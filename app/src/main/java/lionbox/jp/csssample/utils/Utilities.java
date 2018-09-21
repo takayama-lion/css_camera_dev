@@ -1,5 +1,7 @@
 package lionbox.jp.csssample.utils;
 
+import android.util.Log;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
@@ -20,7 +22,7 @@ public class Utilities {
 
                 while (addresses.hasMoreElements()) {
                     String address = addresses.nextElement().getHostAddress();
-
+                    Log.d("TAG", "---[" + address + "]");
                     //127.0.0.1と0.0.0.0以外のアドレスが見つかったらそれを返す
                     if (!"127.0.0.1".equals(address) && !"0.0.0.0".equals(address)
                             && address.matches("((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])([.](?!$)|$)){4}")) {

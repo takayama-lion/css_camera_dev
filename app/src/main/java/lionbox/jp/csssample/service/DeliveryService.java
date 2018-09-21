@@ -131,7 +131,7 @@ public class DeliveryService extends Service {
             while (true) {
                 byte[] buffer = new byte[1024];
                 bout.reset();
-                try (Socket socket = listener.accept();) {
+                try (Socket socket = listener.accept()) {
                     InputStream from = socket.getInputStream();
                     int len = from.read(buffer);
                     if (len < 0) {
@@ -227,9 +227,9 @@ public class DeliveryService extends Service {
     private void regist(final String ipAddress, final String code) {
         Observable.create((ObservableOnSubscribe<String>) emitter -> {
             String url = getResources().getString(R.string.server_path) + "/" + getResources().getString(R.string.regist_path);
-
+            Log.d("TAG", "---[" + ipAddress + "]");
             RequestBody formBody = new FormBody.Builder()
-                    .add("code", code)
+                    .add("id", code)
                     .add("ipaddress", ipAddress)
                     .build();
 
@@ -243,7 +243,7 @@ public class DeliveryService extends Service {
             String result = null;
             try {
                 Response response = client.newCall(request).execute();
-                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                if (!response.isSuccessful())//throw new IOException("Unexpected code " + response);
                 {
                     result = response.body().string();
                     Log.d("TAG", result);
@@ -272,7 +272,7 @@ public class DeliveryService extends Service {
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/jpg"), file))
-                    .addFormDataPart("code", code)
+                    .addFormDataPart("id", code)
                     .addFormDataPart("token", token)
                     .build();
 
